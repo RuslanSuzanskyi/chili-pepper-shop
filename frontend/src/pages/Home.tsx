@@ -1,29 +1,31 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useFetchProducts from '../shared/hooks/useFetchProducts';
-import { ProductProps } from '../shared/types/productTypes';
+import useProductStore from '../shared/store/productStore';
 
-export default function Home () {
-  const { data: products, loading, error } = useFetchProducts<ProductProps[]>(
-    `${import.meta.env.VITE_API_URL}/api/products`
-  );
+export default function Home() {
+  const { products, loading, error, fetchProducts } = useProductStore();
 
-  if (loading) return <div></div>;
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
       <h1>Product List</h1>
       <ul>
-        {products?.map(product => (
+        {products.map((product) => (
           <li key={product._id}>
             <img src={product.image} alt={product.name} />
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <p>Price: ${product.price}</p>
-            <Link to={`/product/${product.slug}`}>View Details</Link>
+            <Link to={`${product.category}/${product.slug}`}>View Details</Link>
           </li>
-        )) ?? []}
+        ))}
       </ul>
     </div>
   );
-};
+}

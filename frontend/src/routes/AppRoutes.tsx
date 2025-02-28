@@ -12,7 +12,7 @@ export default function AppRoutes() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}/>
-            <Route path="product/:slug" element={<Product />}/>
+            <Route path=":category/:slug" element={<Product />}/>
           </Route>
         </Routes>
       </BrowserRouter>
