@@ -38,11 +38,11 @@ router.get('/slug/:slug', async (req, res) => {
 
 router.get('/category/:category', async (req, res) => {
   try {
-    const product = await Product.findOne({ category: req.params.category });
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+    const products = await Product.find({ "category.slug": req.params.category });
+    if (!products.length) {
+      return res.status(404).json({ message: 'Products not found' });
     }
-    res.json(product);
+    res.json(products);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

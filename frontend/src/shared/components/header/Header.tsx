@@ -10,7 +10,7 @@ const navigation = [
 
 export default function Header() {
   return (
-    <header>
+    <header className="grow-0 shrink-0 sticky top-0">
       <nav>
         <ul>
           {navigation.map((item) => (

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useProductStore from '../shared/store/productStore';
+import LazyImage from '../shared/components/LazyImage';
 
 export default function Product() {
   const { slug } = useParams<{ slug: string }>();
@@ -21,7 +22,7 @@ export default function Product() {
       <h2>{productDetails.name}</h2>
       <p>{productDetails.description}</p>
       <p>${productDetails.price}</p>
-      <img src={productDetails.image} alt={productDetails.name} style={{ width: '200px' }} />
+      <LazyImage src={productDetails.image} alt={productDetails.name} />
     </div>
   );
 }
