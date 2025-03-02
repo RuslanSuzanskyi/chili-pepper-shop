@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { NavItemsProps } from "../../../types/navItemsTypes";
+import { NavItemsProps } from "../../../types";
 
 export default function NavItem({label, path}: NavItemsProps) {
   return (

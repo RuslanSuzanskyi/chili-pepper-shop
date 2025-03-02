@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import axios from 'axios';
-import { ProductProps } from '../types/productTypes';
+import { ProductProps } from '../types';
 
 interface ProductStore {
   products: ProductProps[];
