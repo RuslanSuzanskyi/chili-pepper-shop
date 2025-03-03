@@ -9,14 +9,14 @@ export default function ProductList() {
     fetchProducts();
   }, [fetchProducts]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div></div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <ul>
+    <ul className="flex flex-wrap">
       {products.map((product) => (
-        <li key={product._id}>
-          <ProductCard product={product} />
+        <li key={product._id} className="w-full sm:w-[calc(50%-0.8rem)] md:w-[calc(33.333%-0.8rem)] lg:w-[calc(25%-0.8rem)]">
+            <ProductCard product={product} />
         </li>
       ))}
     </ul>

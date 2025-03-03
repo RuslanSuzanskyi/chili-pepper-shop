@@ -13,7 +13,7 @@ export default function Product() {
     }
   }, [slug, fetchProductBySlug]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div></div>;
   if (error) return <div>Error: {error}</div>;
   if (!productDetails) return <div>Product not found</div>;
 
@@ -22,7 +22,9 @@ export default function Product() {
       <h2>{productDetails.name}</h2>
       <p>{productDetails.description}</p>
       <p>${productDetails.price}</p>
-      <LazyImage src={productDetails.image} alt={productDetails.name} />
+      <div className="w-150 h-150">
+        <LazyImage src={productDetails.image} alt={productDetails.name} />
+      </div>
     </div>
   );
 }
