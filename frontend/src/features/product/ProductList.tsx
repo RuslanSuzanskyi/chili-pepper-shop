@@ -13,9 +13,9 @@ export default function ProductList() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <ul className="flex flex-wrap">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-4">
       {products.map((product) => (
-        <li key={product._id} className="w-full sm:w-[calc(50%-0.8rem)] md:w-[calc(33.333%-0.8rem)] lg:w-[calc(25%-0.8rem)]">
+        <li key={product._id}>
             <ProductCard product={product} />
         </li>
       ))}

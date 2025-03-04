@@ -14,9 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Link to={`${product.category.slug}/${product.slug}`}>
           <span className="block truncate">{product.name}</span>
         </Link>
-        <Link to={`${product.category.slug}/${product.slug}`}>
-          <span className="block truncate">Price: ${product.price}</span>
-        </Link>
+        <span className="block truncate text-green-500 text-[1.8rem]">{product.price} &#8372;</span>
       </div> 
     </article>
   );

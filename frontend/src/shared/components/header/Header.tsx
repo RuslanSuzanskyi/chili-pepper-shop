@@ -1,7 +1,6 @@
-// import SeachInput from "./SeachInput";
-
 import Container from "../Container";
 import NavItem from "./components/NavItem";
+import Search from "./components/Searh";
 
 const navigation = [
   { label: "Головна", path: "/" },
@@ -11,7 +10,7 @@ const navigation = [
 
 export default function Header() {
   return (
-    <header className="grow-0 shrink-0 sticky top-0">
+    <header className="grow-0 shrink-0 sticky top-0 w-full bg-white">
       <Container>
         <nav>
           <ul>
@@ -19,8 +18,8 @@ export default function Header() {
               <NavItem key={item.path} {...item}/>
             ))}
           </ul>
+          <Search />
         </nav>
-        {/* <SeachInput /> */}  
       </Container>
     </header>
   );

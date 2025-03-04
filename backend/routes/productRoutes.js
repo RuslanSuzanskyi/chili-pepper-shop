@@ -49,36 +49,19 @@ router.get('/category/:category', async (req, res) => {
 });
 
 router.get('/search', async (req, res) => {
+  const { q } = req.query;
   try {
-    const { query, category, minPrice, maxPrice, spiciness } = req.query;
-    
-    let filter = {};
-
-    if (query) {
-      filter.name = { $regex: query, $options: 'i' }; 
-    }
-
-    if (category) {
-      filter.category = category;
-    }
-
-    if (minPrice || maxPrice) {
-      filter.price = {};
-      if (minPrice) filter.price.$gte = Number(minPrice);
-      if (maxPrice) filter.price.$lte = Number(maxPrice);
-    }
-
-    if (spiciness) {
-      filter.spiciness = Number(spiciness);
-    }
-
-    const products = await Product.find(filter);
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: q, $options: 'i' } },
+        { description: { $regex: q, $options: 'i' } },
+      ],
+    });
     res.json(products);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: 'Failed to search products' });
   }
 });
-
 
 router.post('/', async (req, res) => {
   const product = new Product({

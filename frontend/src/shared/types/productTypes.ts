@@ -29,3 +29,11 @@ export interface ProductFilters {
   minPrice?: number;
   maxPrice?: number;
 };
+
+export interface SearchResultsProps {
+  results: ProductProps[];
+  loading: boolean;
+  error: string | null;
+  setIsOpen: (isOpen: boolean) => void;
+  setQuery: (query: string) => void;
+}
